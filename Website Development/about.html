@@ -1,0 +1,146 @@
+<html>
+<head>
+    <title>AAYL ABOUT</title>
+    <link rel="stylesheet" href="about.css">
+    <meta name="viewport" content="width =device-width, initial-scale =1">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Kaushan+Script&display=swap" rel="stylesheet">
+</head>
+
+
+
+<body>
+    <main class="flex__col">
+        <nav class="menu flex">
+            <a href="index.html" target="_self">
+            
+          </a>
+          <ul class="menu__right flex">
+            <li><a href="index.html" target="_self">HOME</a></li>
+    <li><a href="about.html" target="_self">ABOUT</a></li>
+    <li><a href="event.html" target="_self">EVENT</a></li>
+    <li><a href="fundraiser.html" target="_self">FUNDRAISER</a></li>
+    <li><a href="volunteer.html" target="_self">VOLUNTEER</a></li>
+    <li><a href="contact.html" target="_self">CONTACT</a></li>
+    <li><a href="team.html" target="_self">TEAM</a></li>
+
+          </ul>
+        </nav>
+
+
+
+
+
+
+
+        <section class="intro flex">
+          <h1>Everything<br/>About Us</h1>
+          <img src="images/logo.png">
+          <p>
+            <B>MISSION:</B>
+            <br>
+            Asian American Youth Leadership (AAYL) is a non-profit (501c3) 
+             organization dedicated to cultivate young leaders within the Asian 
+            American community by encouraging youth activity in recreational and 
+            educational projects and enriching their experiences as community 
+            memebers. Our focus is to spreahead the drive to establish a youth 
+            leadership that can serve our youth & families and surrounding citizens 
+            in our community.
+          </p>
+        </section>
+        <section class="list flex__col">
+          <div class="list__item flex">
+            <img src="images/leadership3.png">
+            <div class="list__item__title">AAYL aims to provide youths the opportunity to gain leadership experiences. These leadership skills wil provide the future generation with the necessary communication and awareness skills to better the community and the world.   </div>
+            <div class="list__item__titleOutline">AAYL aims to provide youths the opportunity to gain leadership experiences. These leadership skills wil provide the future generation with the necessary communication and awareness skills to better the community and the world.   </div>
+            <ul class="list__item__infos flex">
+              <li><span></span> Our Goals</li>
+              <li><span> Possibility / </span>Infinite</li>
+              <li><span></span> Government Recognized</li>
+              <li><span>YEAR</span> 2023</li>
+            </ul>
+            <div class="list__item__type">AAYL</div>
+            <div class="list__item__project">AAYL</div>
+          </div>
+        </div>
+          <div class="list__item flex">
+            <img src="events/badminton3.png">
+            <div class="list__item__title">We encourage the education of any fields ranging from STEM to art and literature. AAYL provides both in person and online educational courses to provide younger generations with a more literate future. Along side eduction we provide both donation and fundraising opportunity to better the lives of those in need. </div>
+            <div class="list__item__titleOutline">We encourage the education of any fields ranging from STEM to art and literature. AAYL provides both in person and online educational courses to provide younger generations with a more literate future. Along side eduction we provide both donation and fundraising opportunity to better the lives of those in need. </div>
+            <ul class="list__item__infos flex">
+              <li><span></span> Community Enrichment</li>
+              <li><span> Possibility / </span>Infinite</li>
+              <li><span></span> Government Recognized</li>
+              <li><span>YEAR</span> 2023</li>
+            </ul>
+            <div class="list__item__type">AAYL</div>
+            <div class="list__item__project">AAYL</div>
+          </div>
+        </div>
+          <div class="list__item flex">
+            <img src="images/communication.jpg">
+            <div class="list__item__title">AAYL want to inspire young leaders on an international scale. We will be providing these opportunities through varies international events and programs within counties in need. These events will help fund the dreams of young leaders with the asperation to change the world. </div>
+            <div class="list__item__titleOutline">AAYL want to inspire young leaders on an international scale. We will be providing these opportunities through varies international events and programs within countries in need. These events will help fund the dreams of young leaders with the asperation to change the world. </div>
+            <ul class="list__item__infos flex">
+              <li><span></span>International</li>
+              <li><span> Possibility / </span>Infinite</li>
+              <li><span></span> Government Recognized</li>
+              <li><span>YEAR</span> 2023</li>
+            </ul>
+            <div class="list__item__type">AAYL</div>
+            <div class="list__item__project">AAYL</div>
+          </div>
+        </div>
+      </main>
+<script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+
+
+
+
+
+<script>
+var items = document.querySelectorAll(".list__item")
+
+items.forEach(item => {
+  var itemTitle = item.querySelector(".list__item__title")
+  var itemTitleOutline = item.querySelector(".list__item__titleOutline")
+  var itemImg = item.querySelector(".list__item img")
+  
+  var itemTL = gsap.timeline({scrollTrigger: {
+    trigger: item,
+    start: "0% 75%",
+    end: "25% 50%",
+    scrub: 3,
+  }})
+  
+  itemTL.fromTo(itemTitle, {scale: 2, y: "100%"}, {scale: 1, y: "0%", ease: "power2.inOut"}, 0)
+  itemTL.fromTo(itemTitleOutline, {scale: 2, y: "100%"}, {scale: 1, y: "0%", ease: "power2.inOut"}, 0)
+  
+  gsap.fromTo(itemImg, {x: "60vw", y : "60vh", rotate: -30}, {x: "-60vw", y: "-60vh", rotate: 30, ease: "none", scrollTrigger: {
+    trigger: item,
+    start: "50% 100%",
+    end: "100% 50%",
+    scrub: 3,
+  }})
+})
+</script>
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+</html>

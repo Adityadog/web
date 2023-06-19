@@ -1,0 +1,220 @@
+
+
+<div class="container" id="app">
+
+
+    <header>
+        <div class="containers">
+          <div class="spacing"></div>
+          <nav id="navbar">
+            <ul id="menu">
+                <li><a href="index.html" target="_self">HOME</a></li>
+                <li><a href="about.html" target="_self">ABOUT</a></li>
+                <li><a href="event.html" target="_self">EVENT</a></li>
+                <li><a href="fundraiser.html" target="_self">FUNDRAISER</a></li>
+                <li><a href="volunteer.html" target="_self">VOLUNTEER</a></li>
+                <li><a href="contact.html" target="_self">CONTACT</a></li>
+                <li><a href="team.html" target="_self">TEAM</a></li>
+            </ul>
+          </nav>
+        </div>
+        </header>
+
+    <header>
+        <title>Fundraiser</title>
+      <link rel="stylesheet" href="fundraiser.css">
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Kaushan+Script&display=swap" rel="stylesheet">
+    </header>
+  
+
+
+
+    
+
+
+
+
+    <section>
+      <h4>Events > <span>Tables</span></h4>
+    </section>
+  
+    <section>
+      <div class="card">
+        <div class="card-info">
+          <h1 id="card-info-title">{{ currentCard.title }}</h1>
+          <p id="card-info-desc">{{ currentCard.desc }}</p>
+          <a href="#">
+            <p>More details</p>
+            <svg viewBox="0 0 20 10">
+              <line x1="0" y1="5" x2="20" y2="5" />
+              <line x1="15" y1="0" x2="20" y2="5" />
+              <line x1="15" y1="10" x2="20" y2="5" />
+            </svg>
+          </a>
+        </div>
+        <div class="card-photo">
+          <div id="mask-1" class="mask"></div>
+          <div id="mask-2" class="mask"></div>
+          <a href="#" @click="nextCard">
+            <p>Next</p>
+            <svg viewBox="0 0 20 10">
+              <line x1="0" y1="5" x2="20" y2="5" />
+              <line x1="15" y1="0" x2="20" y2="5" />
+              <line x1="15" y1="10" x2="20" y2="5" />
+            </svg>
+          </a>
+          <img :src="currentCard.photo">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <script>
+    const { createApp } = Vue;
+
+createApp({
+  data() {
+    return {
+      cards: [
+        {
+          id: 1,
+          title: "AAYL",
+          desc:
+            "The Lack of finance has been one of the major contributors to poor education and health care. To combat this we plan on raising as much money as possible through donations in order to provide the capita to families in need. This will provide the future and opportunity everyone deserves. ",
+          photo:
+            "images/fundraiser.png"
+        },
+        {
+          id: 2,
+          title: "Daytona",
+          desc:
+            "The Circle Coffee table from Wendelbo emulates almost a visual trick. A frame where mass and gravity is suspended, and the slim and delicate structure support the marble top, like a hovering platform.",
+          photo:
+            "https://images.unsplash.com/photo-1615529182904-14819c35db37?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+        },
+        {
+          id: 3,
+          title: "Indiana",
+          desc:
+            "With an appearance that is at once light and elegant, the Workshop Coffee Table fits perfectly into any living room, serving as a traditional coffee table as well as side table.",
+          photo:
+            "https://images.unsplash.com/flagged/photo-1588262516915-e342186ecdf6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+        },
+        {
+          id: 4,
+          title: "Amarillo",
+          desc:
+            "Made from sustainably sourced solid American Oak, the Duo Table is composed of two seperate tops joined together on one side. The tops are solid and carved out to create a gentle lip. ",
+          photo:
+            "images/leadership2.jpg"
+        
+        }
+        
+      ],
+      currentNum: 0
+    };
+  },
+  computed: {
+    currentCard() {
+      return this.cards[this.currentNum];
+    }
+  },
+  methods: {
+    playFoward() {
+      let tl = gsap.timeline({
+        defaults: {
+          duration: 0.7,
+          ease: "sine.out"
+        },
+        onComplete: () => {
+          this.playReverse();
+          if (this.currentNum >= 3) {
+            this.currentNum = 0;
+          } else {
+            this.currentNum++;
+          }
+        }
+      });
+      tl.to("#mask-1", {
+        yPercent: 100,
+        scaleY: 1.4
+      })
+        .to(
+          "#mask-2",
+          {
+            yPercent: -100,
+            scaleY: 1.4
+          },
+          "<"
+        )
+        .to(
+          "#card-info-title",
+          {
+            clipPath: `polygon(0 0, 100% 0, 100% 0%, 0% 0%)`
+          },
+          "<0.4"
+        )
+        .to(
+          "#card-info-desc",
+          {
+            clipPath: `polygon(0 0, 100% 0, 100% 0%, 0% 0%)`
+          },
+          "<0.3"
+        );
+    },
+    playReverse() {
+      let tl = gsap.timeline({
+        defaults: {
+          duration: 0.7,
+          ease: "sine.in"
+        }
+      });
+      tl.to("#mask-1", {
+        yPercent: -100,
+        scaleY: 1.4
+      })
+        .to(
+          "#mask-2",
+          {
+            yPercent: 100,
+            scaleY: 1.4
+          },
+          "<"
+        )
+        .to(
+          "#card-info-title",
+          {
+            clipPath: `polygon(0 0, 100% 0, 100% 100%, 0% 100%)`
+          },
+          "<0.2"
+        )
+        .to(
+          "#card-info-desc",
+          {
+            clipPath: `polygon(0 0, 100% 0, 100% 100%, 0% 100%)`
+          },
+          "<0.3"
+        );
+    },
+    nextCard() {
+      this.playFoward();
+    }
+  }
+}).mount("#app");
+
+  </script>
+
+
+
+
+
+
